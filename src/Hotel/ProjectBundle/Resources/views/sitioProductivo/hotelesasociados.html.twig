@@ -1,0 +1,33 @@
+{% for cong in home %}
+<div class="slide_hotels">
+    <div class="texto_host">
+            <div class="text">
+                <h2>
+                    {{ cong.NombreHotel }}
+                    {% for mapaCa in mapaC %}
+                        {% for mapaPa in mapaP %}
+                            <a data-remodal-target="modal_google_maps" onclick="recibeDatos('{{ mapaCa }}', '{{ mapaPa }}', '{{ cong.Mapa }}');"><i class="fa fa-map-marker" aria-hidden="true"></i></a>
+                        {% endfor %}
+                    {% endfor %}
+                </h2>
+                <p>
+                    {{ cong.DescHotel }} 
+                </p>
+            </div>
+            <div class="start_cont">
+                <!-- <div class="stars_rating"></div>-->
+            </div>
+            <div class="divisor"></div>
+            <div class="infografias">
+            <p>{{ cong.desde }} <i class="fa fa-plane" aria-hidden="true"></i></p>
+            <p>{{ cong.hasta }} <i class="fa fa-plane" aria-hidden="true"></i></p>
+            <p>{{ cong.	NumeroCamasLibres }} libres/free <i class="fa fa-bed" aria-hidden="true"></i></p>
+        </div>
+    </div>
+        <div class="imagen">
+            <a data-remodal-target="modal_formulario" onclick="formularioReserva('{{ cong.NombreHotel }}', '{{ cong.DescHotel }}', '{{ cong.desde }}-{{ cong.hasta }}', '{{ cong.NombreHotel }}', '{{ cong.	NumeroCamasLibres }}', '', '')">Book now</a>
+        <img src="http://prueba12.iridian.co/media/cache/imagen_host/images/host.jpg"/>
+    </div>
+</div>
+
+{% endfor %}

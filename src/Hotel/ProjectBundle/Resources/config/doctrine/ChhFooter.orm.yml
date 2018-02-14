@@ -1,0 +1,29 @@
+Hotel\ProjectBundle\Entity\ChhFooter:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhFooterRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombreFooter:
+            type: string
+            column: NombreFooter
+        contactoFooter:
+            type: string
+            column: ContactoFooter
+    manyToOne:
+        homeRelacion:
+            targetEntity: ChhHome
+            joinColumn:
+              name: homeRelacion_id
+              referencedColumnName: id
+        idiomaRelacion:
+            targetEntity: ChhIdiomas
+            joinColumn:
+              name: idiomaRelacion_id
+              referencedColumnName: id
+    lifecycleCallbacks: {  }

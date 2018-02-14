@@ -1,0 +1,47 @@
+Hotel\ProjectBundle\Entity\ChhReserva:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhReservaRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        descReserva:
+            type: text
+            column: DescReserva
+        nombreReserva:
+            type: string
+            length: '200'
+            column: NombreReserva
+        correoReserva:
+            type: string
+            length: '255'
+            column: CorreoReserva
+        empresaReserva:
+            type: string
+            length: '255'
+            column: EmpresaReserva
+        numeroCuartosReserva:
+            type: integer
+            column: NumeroCuartosReserva
+        mensajeReserva:
+            type: text
+            column: MensajeReserva
+        fechaCreacionReserva:
+            type: datetime
+            column: FechaCreacionReserva
+    manyToOne:
+        congresoRelacion:
+            targetEntity: ChhCongreso
+            joinColumn:
+              name: congresoRelacion_id
+              referencedColumnName: id
+        hotelRelacion:
+            targetEntity: ChhHotel
+            joinColumn:
+              name: hotelRelacion_id
+              referencedColumnName: id
+    lifecycleCallbacks: {  }

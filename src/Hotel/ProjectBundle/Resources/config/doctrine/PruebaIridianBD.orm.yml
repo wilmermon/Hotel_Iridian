@@ -1,0 +1,16 @@
+Hotel\ProjectBundle\Entity\PruebaIridianBD:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\PruebaIridianBDRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: text
+        documento:
+            type: integer
+    lifecycleCallbacks: {  }

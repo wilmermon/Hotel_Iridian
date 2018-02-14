@@ -1,0 +1,82 @@
+
+{% extends 'base.html.twig' %}
+
+{% block SEOTOTAL %}
+{{ render(controller('ProjectBundle:Default:seo', {'valorMenu':end} )) }}
+{% endblock %}
+
+{% block header %}
+{{ render(controller('ProjectBundle:Default:hder', {'page':page} )) }}
+{% endblock %}
+
+{% block body %}
+<main id="panel">
+    
+    <div class="cont_movil">
+        <div class="izqui">
+            <a href="/" class="homeLink"><img src="http://prueba12.iridian.co/uploads/images/galeria/5984a526b0231.png"/></a>
+        </div>
+        <div class="dere">
+            <i class=" menu_h fa fa-align-right" aria-hidden="true"></i>
+        </div>
+        </div>
+            <div class="contacto_padre">
+                <div class="container">
+                    <h2>¿Que estas esperando?</h2>
+                    <p>Estamos preparados para satisfacer todas tus necesidades y brindarte la mejor experiencia</p>
+                    {% for message in app.flashes('success') %}
+                        <p class="flash-notice" style="color: #088A29">
+                            <b>{{ message }}</b>
+                        </p>
+                    {% endfor %}
+                </div>
+                <div id="map"></div>
+                <div class="container">
+                    <div class="divisor"></div>
+                </div>
+                <div class="contenido container">
+                    <div class="row contact">
+                        <h4>contact_title</h4>
+                        {{ render(controller('ProjectBundle:Default:contactform')) }}
+                    </div>
+                </div>
+            </div>
+            
+{% endblock %}
+
+{% block footer %}
+{{ render(controller('ProjectBundle:Default:fter', {'page':page,'valorMenu':end})) }}
+<script>
+    function initMap() {
+        
+        var styleArray = [{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#d3d3d3"}]},{"featureType":"transit","stylers":[{"color":"#808080"},{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#b3b3b3"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"weight":1.8}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"color":"#d7d7d7"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ebebeb"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"color":"#a7a7a7"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#efefef"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#696969"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#737373"}]},{"featureType":"poi","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#d6d6d6"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#dadada"}]}]
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 4.6562799, lng: -74.0518829},
+            scrollwheel: false,
+            styles: styleArray,
+            zoom: 15
+        });
+
+        var marker = new google.maps.Marker({
+            map: map,
+            position: {lat: 4.6562799, lng: -74.0518829},
+            title: 'Ubicación'
+        });
+    }
+    
+    
+    function recibeDatos(longitud, latitud)
+    {
+        var latlng = new google.maps.LatLng(longitud, latitud);
+        gMap = new google.maps.Map(document.getElementById('map')); 
+        gMap.setZoom(15);      // This will trigger a zoom_changed on the map
+        gMap.setCenter(new google.maps.LatLng(longitud, latitud));
+        //gMap.setPosition(latlng);
+        marker.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+        
+        
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBR8WE33v8iMRlWQs6leCg1TqJQIQlNQm0&callback=initMap"></script>
+{% endblock %}
+

@@ -1,0 +1,382 @@
+
+{% extends 'base.html.twig' %}
+
+
+
+{% block SEOTOTAL %}
+{{ render(controller('ProjectBundle:Default:seo', {'valorMenu':end}))}}
+{% endblock %}
+
+{% block header %}
+{{ render(controller('ProjectBundle:Default:hder', {'page':page} )) }}
+{% endblock %}
+
+{% block body %}
+<main id="panel">
+        <div class="cont_movil">
+            <div class="izqui">
+                <a href="/" class="homeLink"><img src="http://prueba12.iridian.co/uploads/images/galeria/5984a526b0231.png"/></a>
+            </div>
+            <div class="dere">
+                <i class=" menu_h fa fa-align-right" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="container padre_congreso">
+        <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
+            <form method="get" action="" name="pepito" id="pepito" >
+                <input type="hidden" value="{{ page }}" name="page" id="page" >
+                <input type="hidden" value="{{ end }}" name="end" id="end" >
+                <input type="hidden" value="" name="query" id="query" >
+                <ul class="content_list">
+                    <li class="categoria_">
+                        <p class="desplega">Busqueda libre:</p>
+                        <ul class="fechas_ciudades">
+                            <input type="text" class="form-control" placeholder="..." onchange="javascript:enviarPeticion(this.value)" />
+                        </ul>
+                        <p class="desplega">Año</p>
+                        <ul class="fechas_ciudades">
+                            {% for i in 2017 .. 2024 %}
+                               <li class="radio ">
+                                   <label><input type="radio" value="{{ i }}" name="mes" onclick="javascript:enviarPeticion(this.value, 1)" >{{ i }}</label>
+                               </li>   
+                            {% endfor %}
+                        </ul>
+                        <p class="desplega">Fecha</p>
+                        <ul class="fechas_ciudades">
+                            
+                            <li class="radio ">
+                                
+                                <label><input type="radio" value="01" name="mes" onclick="javascript:enviarPeticion(this.value,2)" >Enero</label>
+                            </li>
+                            <li class="radio ">
+                                <label><input type="radio" value="02" name="mes" onclick="javascript:enviarPeticion(this.value,2)">Febrero</label>
+                            </li>
+                            <li class="radio ">
+                                <label><input type="radio" value="03" name="mes" onclick="javascript:enviarPeticion(this.value,2)">Marzo</label>
+                            </li>
+                            <li class="radio ">
+                                <label><input type="radio" value="04" name="mes" onclick="javascript:enviarPeticion(this.value,2)">Abril</label>
+                            </li>
+                            <li class="radio ">
+                                <label><input type="radio" value="05" name="mes"  onclick="javascript:enviarPeticion(this.value,2)">Mayo</label>
+                            </li>
+                            <li class="radio ">
+                                <label><input type="radio" value="06" name="mes" onclick="javascript:enviarPeticion(this.value,2)">Junio</label>
+                            </li>
+                            <li class="radio ">
+                                <label><input type="radio" value="07" name="mes" onclick="javascript:enviarPeticion(this.value,2)">Julio</label>
+                            </li>
+                            <li class="radio ">
+                                <label><input type="radio" value="08" name="mes" onclick="javascript:enviarPeticion(this.value,2)">Agosto</label>
+                            </li>
+                            <li class="radio ">
+                                <label><input type="radio" value="09" name="mes" onclick="javascript:enviarPeticion(this.value,2)">Septiembre</label>
+                            </li>
+                            <li class="radio ">
+                                <label><input type="radio" value="10" name="mes" onclick="javascript:enviarPeticion(this.value,2)">Octubre</label>
+                            </li>
+                            <li class="radio ">
+                                <label><input type="radio" value="11" name="mes" onclick="javascript:enviarPeticion(this.value,2)">Noviembre</label>
+                            </li>
+                            <li class="radio ">
+                                <label><input type="radio" value="12" name="mes" onclick="javascript:enviarPeticion(this.value,2)">Diciembre</label>
+                            </li>
+                        </ul>
+                        <!--<p class="desplega">Lugar</p>
+                        <ul class="fechas_ciudades">
+                            <li class="checkbox ">
+                                <label><input type="checkbox" value="">Colombia</label>
+                            </li>
+                            <li class="checkbox ">
+                                <label><input type="checkbox" value="">Mexico</label>
+                            </li>
+                            <li class="checkbox ">
+                                <label><input type="checkbox" value="">Canada</label>
+                            </li>
+                            <li class="checkbox ">
+                                <label><input type="checkbox" value="">Africas</label>
+                            </li>
+                            <li class="checkbox ">
+                                <label><input type="checkbox" value="">España</label>
+                            </li>
+                            <li class="checkbox ">
+                                <label><input type="checkbox" value="">Italia</label>
+                            </li>
+                        </ul>
+                        <p class="desplega">Categorias</p>
+                        <ul class="fechas_ciudades">
+                            <li class="checkbox ">
+                                <label><input type="checkbox" value="">Medicina</label>
+                            </li>
+                            <li class="checkbox ">
+                                <label><input type="checkbox" value="">Diseño</label>
+                            </li>
+                            <li class="checkbox ">
+                                <label><input type="checkbox" value="">Automovil</label>
+                            </li>
+                            <li class="checkbox ">
+                                <label><input type="checkbox" value="">Negocios</label>
+                            </li>
+                            <li class="checkbox ">
+                                <label><input type="checkbox" value="">Arquitectura</label>
+                            </li>
+                            <li class="checkbox ">
+                                <label><input type="checkbox" value="">Gastronomía</label>
+                            </li>
+                        </ul>-->
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+            {% for message in app.flashes('success') %}
+                <p class="flash-notice" style="color: #088A29">
+                    <b>{{ message }}</b>
+                </p>
+            {% endfor %}
+           <!-- <form>
+                <ul class="menu_congreso">
+                    <li><input type="search"/></li>
+                    <li><select>
+                            <option>opcion 1</option>
+                            <option>opcion 2</option>
+                        </select>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-caret-left" aria-hidden="true"></i></a>
+                        <a class="clase_active" href="#">1</a>
+                        <a href="#">2</a>
+                        <a><i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </form>-->
+            {% if not home|length %}
+                
+                    <div class="container">
+                        <h2>No se encontraron resultados</h2>
+                        <p>-------------------------------</p>
+                    </div>
+                
+            {% endif %}
+            
+            {% if home|length %}
+            {% for homes in home %}
+                <div class="content_list_host general poranio{{ homes.FechaCongreso|date('Y') }} pormes{{ homes.FechaCongreso|date('m') }}" data-id="{{ homes.id }}">
+                    <div class="info col-xs-12 col-sm-7 col-md-7 col-lg-8">
+                        <input type="hidden" value="{{ homes.MapaCongreso }}" id="cordenadas{{ homes.id }}" > 
+                        <h2>{{ homes.NombreCongreso }} </h2>
+                        <p>{{ homes.DescripcionCongreso }}</p>
+                        <table class="table">
+                            <tr>
+                                <td>{{ homes.FechaCongreso|date('Y-m-d') }}</td>
+                                <td>{{ homes.UbicacionCongreso }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ homes.LugarEncuentroCongreso }}</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4 info-icons">
+                        <div class="cont_info_icons">
+                            <div class="cont_info"></div>
+                            {{ render(controller('ProjectBundle:Default:habitacionesTotales', {'limit': homes.id} )) }}
+                            <div class="content_icon">
+                                <a class="desplega_hotel"><i class="fa fa-bed" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <div class="cont_info_icons">
+                            <div class="cont_info"></div>
+                            <p>View on map</p>
+                            <div class="content_icon">
+                                <a data-remodal-target="modal_google_maps" onclick="recibeDatos('{{ homes.MapaCongreso }}', '{{ homes.MapAeropuerto }}', '0');"><i class="fa fa-map-marker" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <div class="cont_info_icons">
+                            <div class="cont_info"></div>
+                            <p>Book now</p>
+                            <div class="content_icon">
+                                <a data-remodal-target="modal_formulario" onclick="formularioReserva('{{ homes.NombreCongreso }}', '{{ homes.DescripcionCongreso }}', '{{ homes.FechaCongreso|date('Y-m-d') }}',  '{{ homes.UbicacionCongreso }}', '{{ homes.LugarEncuentroCongreso }}')"><i class="fa fa-check" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="desplegables">
+                    {{ render(controller('ProjectBundle:Default:hotelesasociados', {'idCongreso': homes.id, 'mapaCongreso':  homes.MapaCongreso, 'mapaAero': homes.MapAeropuerto  } )) }}
+                </div>
+            {% endfor  %}
+            {% endif %}
+            </div>
+            
+        <div class="remodal remodal_maps" data-remodal-id="modal_google_maps">
+            <button data-remodal-action="close" class="remodal-close"></button>
+                <h2>Aeropuerto | Lugar del congreso | Hotel</h2>
+                <p>Cada uno le puede dar la información de su ubicación</p>
+            <div class="googleMaps" id="map"></div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 foot_remodal text-center">
+                <p>Usted puede ver en el mapa la ubicación del hotel, siempre y cuando abra los hoteles disponibles</p>
+                <div class="divisor"></div>
+                <p>Corporate Housing Hotel</p>
+            </div>
+        </div>
+        <div class="remodal remodal_formulario" data-remodal-id="modal_formulario">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <h2 id="tituloUno">V A C I O</h2>
+                <p >Resumen:</p>
+                <p class="parrafo_largo" id="parrafoTres">
+                    V A C I O
+                </p>
+                {{ render(controller('ProjectBundle:Default:reservacontacto')) }}
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 preguntas">
+                <h2>¿tienes alguna pregunta?</h2>
+                <a href="contacto?page={{ page }}&end=4" class="btn">contáctanos</a>
+                <p class="parrafo_largo">Si tienes dudas con la forma de reserva, cantidad de habitaciones disponibles o preguntas generales, por favor contáctanos.</p>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 foot_remodal text-center">
+                <p id="fechaDos"> - - - - - -</p>
+                <div class="divisor"></div>
+                <p id="descCinco">------</p>
+            </div>
+        </div> 
+    </div>
+{% endblock %}
+
+{% block footer %}
+{{ render(controller('ProjectBundle:Default:fter', {'page':page,'valorMenu':end})) }}
+<script>
+    //variables y objetos globales
+    var map;             //mapa
+    var geocoder;       //geocoder
+    var _path = [];     // ruta
+    var _poliLinea;
+    
+    function initMap() {
+        
+        //var styleArray = [{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#d3d3d3"}]},{"featureType":"transit","stylers":[{"color":"#808080"},{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#b3b3b3"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"weight":1.8}]},{"featureType":"road.local","elementType":"geometry.stroke","stylers":[{"color":"#d7d7d7"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#ebebeb"}]},{"featureType":"administrative","elementType":"geometry","stylers":[{"color":"#a7a7a7"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#efefef"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#696969"}]},{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"color":"#737373"}]},{"featureType":"poi","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#d6d6d6"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"color":"#dadada"}]}]
+        map = new google.maps.Map(document.getElementById('map'), {
+            scrollwheel: true,
+            zoom: 10
+        });
+
+        var marker = new google.maps.Marker({
+            map: map,
+            position: {lat: 4.6562799, lng: -74.0518829},
+            title: 'REFERENCIA'
+        });
+        
+        _poliLinea = new google.maps.Polyline({ //polilinea
+            path: _path,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+    }
+    
+    function recibeDatos(id, aeropuerto, hotel)
+    {
+        setTimeout(function(){ 
+            var coordenadas = id;
+            var intermedio = coordenadas.split(",");
+            var mapaAeropuerto = aeropuerto.split(",");
+            var adicionalHotel = hotel;
+            var testigo = 1;
+            
+            if(adicionalHotel == 0)
+            {
+                var marcadores = [
+                    ['Aeropuerto', mapaAeropuerto[0], mapaAeropuerto[1]],
+                    ['Lugar Congreso', intermedio[0], intermedio[1]]
+                ];
+            }else
+            {
+                adicionalHotel = adicionalHotel.split(",");
+                var marcadores = [
+                    ['Lugar Congreso', intermedio[0], intermedio[1]],
+                    ['Aeropuerto', mapaAeropuerto[0], mapaAeropuerto[1]],
+                    ['Hotel', adicionalHotel[0], adicionalHotel[1]]
+                ];
+            }
+            //creo mapa
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 5,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+              });
+            
+            var marker, i, latlng;
+            for (i = 0; i <= marcadores.length; i++) {
+                
+                latlng = new google.maps.LatLng(marcadores[i][1], marcadores[i][2]);
+                
+               
+                //cargo la nueva ruta en la polilinea
+                _poliLinea.setPath(_path);
+                //agrego el punto al array de la ruta
+                _path.push(latlng);
+                marker = new google.maps.Marker({
+                    map: map,
+                    position: latlng,
+                    title:marcadores[i][0]
+                });
+                map.setCenter(latlng);
+                map.setZoom(12);
+                
+                marker.setMap(map);
+                
+                //map.setZoom(10);      // This will trigger a zoom_changed on the map
+                //map.setCenter(new google.maps.LatLng(marcadores[i][1], marcadores[i][2]));
+                
+                
+                // To add the marker to the map, call setMap();
+                //agregarRuta(latlng);
+                
+                    
+                    //centro el mapa en el último punto
+                    //map.setCenter(latlng);
+                    //Hago un poco de zoom
+                    //map.setZoom(5);
+            }
+            
+        }, 100);
+    }
+    
+
+    function formularioReserva(uno, dos, tres, ubicacion, lugar )
+    {
+        //alert(tres);
+        document.getElementById("tituloUno").innerHTML = uno;
+        document.getElementById("fechaDos").innerHTML = "Dates:" + tres +" <span>Location: "+ubicacion+", "+pais+"</span>";
+        document.getElementById("parrafoTres").innerHTML = dos;
+        document.getElementById("Reservas_nombreReserva").value = "Queremos asistir a: " + uno;
+        
+        if(lugar == "" || lugar == null)
+        {
+            document.getElementById("descCinco").innerHTML = "";
+        }else
+        {
+            document.getElementById("descCinco").innerHTML = "<b>Lugar de encuentro:</b> "+ lugar + " <b>Tipo de congreso:</b> <span>"+tipo+"</span>";
+        }
+        
+        
+    }
+    
+    function enviarPeticion(valor, opcion)
+    {
+        //opcion 1 es año y 2 es mes
+        if(opcion == 1)
+        {
+            $('.general').hide();
+            $('.poranio'+valor).show();
+        }else
+        {
+            $('.general').hide();
+            $('.pormes'+valor).show();
+        }
+        
+        //document.getElementById("query").value = valor;
+        //document.getElementById('pepito').submit();
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBR8WE33v8iMRlWQs6leCg1TqJQIQlNQm0&callback=initMap"></script>
+{% endblock %}

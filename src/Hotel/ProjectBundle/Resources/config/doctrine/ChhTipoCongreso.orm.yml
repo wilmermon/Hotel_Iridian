@@ -1,0 +1,21 @@
+Hotel\ProjectBundle\Entity\ChhTipoCongreso:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhTipoCongresoRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombreTipoCongreso:
+            type: string
+            column: NombreTipoCongreso
+    manyToOne:
+        idiomaRelacion:
+            targetEntity: ChhIdiomas
+            joinColumn:
+              name: idiomaRelacion_id
+              referencedColumnName: id
+    lifecycleCallbacks: {  }

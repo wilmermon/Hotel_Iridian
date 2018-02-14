@@ -1,0 +1,24 @@
+pruebairidianbd_index:
+    path:     /
+    defaults: { _controller: "ProjectBundle:PruebaIridianBD:index" }
+    methods:  GET
+
+pruebairidianbd_show:
+    path:     /{id}/show
+    defaults: { _controller: "ProjectBundle:PruebaIridianBD:show" }
+    methods:  GET
+
+pruebairidianbd_new:
+    path:     /new
+    defaults: { _controller: "ProjectBundle:PruebaIridianBD:new" }
+    methods:  [GET, POST]
+
+pruebairidianbd_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ProjectBundle:PruebaIridianBD:edit" }
+    methods:  [GET, POST]
+
+pruebairidianbd_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ProjectBundle:PruebaIridianBD:delete" }
+    methods:  DELETE

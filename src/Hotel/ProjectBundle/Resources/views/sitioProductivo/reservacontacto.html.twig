@@ -1,0 +1,45 @@
+{{ form_start(form, {'attr' : {'role' : 'form'}}) }}
+
+<div class="form-group">
+    {{ form_label(form.nombreReserva) }}
+    {{ form_widget(form.nombreReserva, { 'attr' : {'placeholder' : 'Descripción reserva'} }) }}
+    <span class="text-danger">{{ form_errors(form.nombreReserva) }}</span>
+</div>
+
+<div class="form-group">
+    {{ form_label(form.correoReserva) }}
+    {{ form_widget(form.correoReserva, { 'attr' : {'placeholder' : 'Correo de contacto'} }) }}
+    <span class="text-danger">{{ form_errors(form.correoReserva) }}</span>
+</div>
+<div class="form-group">
+    {{ form_label(form.empresaReserva) }}
+    {{ form_widget(form.empresaReserva, { 'attr' : {'placeholder' : 'Empresa a la cual se reserva'} }) }}
+    <span class="text-danger">{{ form_errors(form.empresaReserva) }}</span>
+</div>
+<div class="form-group">
+    {{ form_label(form.numeroCuartosReserva) }}
+    {{ form_widget(form.numeroCuartosReserva, { 'attr' : {'placeholder' : 'Cantidad de habitaciones', 'min':'1'} }) }}
+    <span class="text-danger">{{ form_errors(form.numeroCuartosReserva) }}</span>
+</div>
+<div class="form-group">
+    {{ form_label(form.mensajeReserva) }}
+    {{ form_widget(form.mensajeReserva, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Comentarios adicionales'} }) }}
+    <span class="text-danger">{{ form_errors(form.mensajeReserva) }}</span>
+</div>
+<div class="form-group">
+    {{ form_label(form.congresoRelacion) }}
+    {{ form_widget(form.congresoRelacion, { 'attr' : {'class' : 'form-control'} }) }}
+    <span class="text-danger">{{ form_errors(form.congresoRelacion) }}</span>
+</div>
+<div class="form-group">
+    {{ form_label(form.hotelRelacion) }}
+    {{ form_widget(form.hotelRelacion, { 'attr' : {'class' : 'form-control'} }) }}
+    <span class="text-danger">{{ form_errors(form.hotelRelacion) }}</span>
+</div>
+<div class="form-group">
+{{ form_widget(form.save, {'label' : 'Enviar solicitud', 'attr': {'class': 'btn btn-success'}}) }}
+</div>
+
+
+
+{{ form_end(form) }}

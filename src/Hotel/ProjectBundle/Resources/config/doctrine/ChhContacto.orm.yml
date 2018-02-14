@@ -1,0 +1,35 @@
+Hotel\ProjectBundle\Entity\ChhContacto:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhContactoRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        textoContacto:
+            type: text
+            column: TextoContacto
+        nombreContacto:
+            type: string
+            length: '255'
+            column: NombreContacto
+        apellidoContacto:
+            type: string
+            length: '255'
+            column: ApellidoContacto
+        correoContacto:
+            type: string
+            column: CorreoContacto
+        asuntoContacto:
+            type: string
+            column: AsuntoContacto
+        mensajeContacto:
+            type: text
+            column: MensajeContacto
+        fechaContacto:
+            type: datetime
+            column: FechaContacto
+    lifecycleCallbacks: {  }

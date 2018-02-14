@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% set page = '' %}
+{% set end = '' %}
+{% for noso in servicios %} 
+    {% set page = noso.page %}
+    {% set end = noso.end %}
+{% endfor %}
+
+{% block SEOTOTAL %}
+{{ render(controller('ProjectBundle:Default:seo', {'valorMenu':end}))}}
+{% endblock %}
+
+{% block header %}
+{{ render(controller('ProjectBundle:Default:hder', {'page':page} )) }}
+{% endblock %}
+
+{% block body %}
+<main id="panel">
+    <div class="cont_movil">
+        <div class="izqui">
+            <a href="/" class="homeLink"><img src="http://prueba12.iridian.co/uploads/images/galeria/5984a526b0231.png"/></a>
+        </div>
+        <div class="dere">
+            <i class=" menu_h fa fa-align-right" aria-hidden="true"></i>
+        </div>
+    </div>
+    <div class="padre_servicios">
+        <div class="banner" style="background-image: url(http://prueba12.iridian.co/uploads/images/galeria/5984da3525a87.jpg)">
+            <div class="container">
+            {% for serv in servicios %}    
+                    <div class="icons_services">
+                        <img src="upload/hotel/{{ serv.ImgServicios }}"/>
+                        <div class="divisor"></div>
+                        <p><span>{{ serv.NombreServicios }}</span></p>
+                        <p>{{ serv.Nombre2Servicios }}</p>
+                        <a class="btn" href="/{{ serv.LinkServicios }}">Ver más</a>
+                        <a class="btn"data-remodal-target="modal_formulario_transporte">Ver más</a>
+                    </div>
+            {% endfor %}        
+            </div>
+        </div>
+    </div>
+    
+    <div class="remodal remodal_formulario" data-remodal-id="modal_formulario_transporte">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+            <h2>TRaslados</h2>
+            <p>The 19th European Congress of  Endocrinology</p>
+            <p class="parrafo_largo">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+            </p>
+            {{ render(controller('ProjectBundle:Default:reservacontacto')) }}
+        </div>
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 preguntas">
+            <h2>¿tienes alguna pregunta?</h2>
+            <a href="contacto?page={{ page }}&end=4" class="btn">contáctanos</a>
+            <p class="parrafo_largo">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially uncha</p>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 foot_remodal text-center">
+            <p>Dates: 20 - 30 May, 2017 <span>Loation: Lisboa, Portugal</span></p>
+            <div class="divisor"></div>
+            <p>Venue: Lisboa Congress C.<span>Med. Field: Endocrinology</span></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{{ render(controller('ProjectBundle:Default:fter', {'page':page,'valorMenu':end})) }}
+{% endblock %}

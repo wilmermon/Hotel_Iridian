@@ -1,0 +1,32 @@
+<!-- Declaración de variables -->
+{% set bandera = '' %}
+{% set contadorGral = 1 %}
+<div id="menu" class="menu">
+    <header>
+        <nav class="container">
+            <ul class="col-xs-12 col-sm-12 col-md-12 mainMenu">
+                <li class="logo_movil"><a href="/" class=" menuActive" class="homeLink"><img src="http://prueba12.iridian.co/uploads/images/galeria/5984a526b0231.png"/></a></li>
+                {% for hdr in home %}
+                    {% if bandera == '' %}
+                        {% if(home|length is odd) %}
+                             {% set bandera=((home|length + 1) / 2) %}
+                        {% else %}
+                            {% set bandera = home|length %}
+                            {% set bandera = bandera/2 %}
+                        {% endif %}
+                    {% endif %}
+                    
+                    
+                    <li><a href="/{{ hdr.LinkMenu }}" class="">{{ hdr.NombreMenu }}</a></li>
+                    
+                    <!-- validamos el valor del contador general y cuando sea igual al valor de la bandera, se pinta el logo -->
+                    {% if bandera == contadorGral  %}
+                        <li class="logo_pc"><a href="/web/?page={{ hdr.page }}&end=1" class="homeLink"><img src="http://prueba12.iridian.co/uploads/images/galeria/5984a526b0231.png"/></a></li>
+                        {% set bandera = 0 %}
+                    {% endif %}
+                    {% set contadorGral = contadorGral + 1 %}
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+</div>

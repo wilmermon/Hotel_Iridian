@@ -1,0 +1,47 @@
+{% for ser in base_servicios %}
+<div class="remodal remodal_formulario{{ ser }}" data-remodal-id="modal_formulario_transporte">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+            <h2>TRaslados</h2>
+            <p>The 19th European Congress of  Endocrinology</p>
+            <p class="parrafo_largo">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+            </p>
+            <form>
+                <div class="form-group">
+                    <label>Nombre completo:</label>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label>Correo electronico:</label>
+                    <input type="email">
+                </div>
+                <div class="form-group">
+                    <label>Empresa:</label>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label>Número de cuartos:</label>
+                    <input type="number">
+                </div>
+                <div class="form-group">
+                    <label>Tu mensaje:</label>
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <a class="btn">Enviar</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 preguntas">
+            <h2>¿tienes alguna pregunta?</h2>
+            <a href="/contacto" class="btn">contáctanos</a>
+            <p class="parrafo_largo">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially uncha</p>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 foot_remodal text-center">
+            <p>Dates: 20 - 30 May, 2017 <span>Loation: Lisboa, Portugal</span></p>
+            <div class="divisor"></div>
+            <p>Venue: Lisboa Congress C.<span>Med. Field: Endocrinology</span></p>
+        </div>
+    </div>
+{% endfor %}

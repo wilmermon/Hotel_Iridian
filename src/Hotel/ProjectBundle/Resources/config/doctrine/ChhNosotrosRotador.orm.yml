@@ -1,0 +1,53 @@
+Hotel\ProjectBundle\Entity\ChhNosotrosRotador:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhNosotrosRotadorRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        tituloNosotros:
+            type: string
+            length: '255'
+            column: TituloNosotros
+        descNosotros:
+            type: text
+            column: DescNosotros
+        btnUnoNosotros:
+            type: string
+            column: BtnUnoNosotros
+        linkUnoNosotros:
+            type: string
+            column: LinkUnoNosotros
+        btnDosNosotros:
+            type: string
+            nullable: true
+            column: BtnDosNosotros
+        linkDosNosotros:
+            type: string
+            nullable: true
+            column: LinkDosNosotros
+        btnTresNosotros:
+            type: string
+            column: BtnTresNosotros
+        linkTresNosotros:
+            type: string
+            column: LinkTresNosotros
+        imgFondoNosotros:
+            type: string
+            column: ImgFondoNosotros
+        activo:
+            type: boolean
+            column: Activo
+        orden:
+            type: integer
+    manyToOne:
+        idiomaRelacion:
+            targetEntity: ChhIdiomas
+            joinColumn:
+              name: idiomaRelacion_id
+              referencedColumnName: id
+    lifecycleCallbacks: {  }

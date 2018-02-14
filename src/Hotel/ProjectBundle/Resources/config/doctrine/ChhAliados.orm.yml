@@ -1,0 +1,21 @@
+Hotel\ProjectBundle\Entity\ChhAliados:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhAliadosRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombreAliados:
+            type: string
+            column: NombreAliados
+        linkAliados:
+            type: string
+            column: LinkAliados
+        imgAliados:
+            type: string
+            column: ImgAliados
+    lifecycleCallbacks: {  }

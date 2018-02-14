@@ -1,0 +1,67 @@
+
+{% extends 'base.html.twig' %}
+{% set page = '' %}
+{% set end = '' %}
+{% for noso in nosotros %} 
+    {% set page = noso.page %}
+    {% set end = noso.end %}
+{% endfor %}
+
+{% block SEOTOTAL %}
+{{ render(controller('ProjectBundle:Default:seo', {'valorMenu':end}))}}
+{% endblock %}
+
+{% block header %}
+{{ render(controller('ProjectBundle:Default:hder', {'page':page} )) }}
+{% endblock %}
+
+{% block body %}
+<main id="panel">
+        <div class="cont_movil">
+            <div class="izqui">
+                <a href="/" class="homeLink"><img src="http://prueba12.iridian.co/uploads/images/galeria/5984a526b0231.png"/></a>
+            </div>
+            <div class="dere">
+                <i class=" menu_h fa fa-align-right" aria-hidden="true"></i>
+            </div>
+        </div>
+    <div class="padre_nosotros">
+            <div class="rotador_nosotros">
+                <div class="swiper-wrapper">
+                {% for noso in nosotros %}    
+                    <div class="banner swiper-slide" style="background-image: url('upload/hotel/{{ noso.ImgFondoNosotros  }}')">
+                        <div class="txtBls">
+                            <h2>{{ noso.TituloNosotros }}</h2>
+                            <p>{{ noso.DescNosotros }}</p>
+                        </div>
+                        <div class="container text-center">
+                            <div class="visto">
+                                <img src="upload/hotel/{{ noso.BtnUnoNosotros }}"/>
+                                <p>{{ noso.LinkUnoNosotros }}</p>
+                            </div>
+                            <div class="visto">
+                                <img src="upload/hotel/{{ noso.BtnDosNosotros }}"/>
+                                <p>{{ noso.LinkDosNosotros }}</p>
+                            </div>
+                            <div class="visto">
+                                <img src="upload/hotel/{{ noso.BtnTresNosotros }}"/>
+                                <p>{{ noso.LinkTresNosotros }}</p>
+                            </div>
+                        </div>
+                    </div>
+				{% endfor %}	
+					
+                </div>
+				
+				
+                <div class="swiper-pagination"></div>
+            </div>
+                <div class="aliados container">
+                    {{ render(controller('ProjectBundle:Default:aliados')) }}
+                </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{{ render(controller('ProjectBundle:Default:fter', {'page':page,'valorMenu':end })) }}
+{% endblock %}

@@ -1,0 +1,37 @@
+{{ form_start(form, {'attr' : {'role' : 'form'}}) }}
+
+<div class="form-group">
+    {{ form_label(form.nombreContacto) }}
+    {{ form_widget(form.nombreContacto, { 'attr' : {'class' : 'form-control'} }) }}
+    <span class="text-danger">{{ form_errors(form.nombreContacto) }}</span>
+</div>
+
+<div class="form-group">
+    {{ form_label(form.apellidoContacto) }}
+    {{ form_widget(form.apellidoContacto, { 'attr' : {'class' : 'form-control'} }) }}
+    <span class="text-danger">{{ form_errors(form.apellidoContacto) }}</span>
+</div>
+<br><br>
+<div class="form-group">
+    {{ form_label(form.correoContacto) }}
+    {{ form_widget(form.correoContacto, { 'attr' : {'class' : 'form-control'} }) }}
+    <span class="text-danger">{{ form_errors(form.correoContacto) }}</span>
+</div>
+
+<div class="form-group">
+    {{ form_label(form.asuntoContacto) }}
+    {{ form_widget(form.asuntoContacto, { 'attr' : {'class' : 'form-control'} }) }}
+    <span class="text-danger">{{ form_errors(form.asuntoContacto) }}</span>
+</div>
+<br><br>
+<div class="form-group">
+    {{ form_label(form.mensajeContacto) }}
+    {{ form_widget(form.mensajeContacto, { 'attr' : {'class': 'form-control'} }) }}
+    <span class="text-danger">{{ form_errors(form.mensajeContacto) }}</span>
+</div>
+
+<div class="form-group">
+{{ form_widget(form.save, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
+</div>
+
+{{ form_end(form) }}

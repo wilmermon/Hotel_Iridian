@@ -1,0 +1,18 @@
+Hotel\ProjectBundle\Entity\ChhCorreoContacto:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhCorreoContactoRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        areaContacto:
+            type: string
+            column: AreaContacto
+        correoContacto:
+            type: string
+            column: CorreoContacto
+    lifecycleCallbacks: {  }

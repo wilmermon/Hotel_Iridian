@@ -1,0 +1,24 @@
+Hotel\ProjectBundle\Entity\ChhSeoGeneral:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhSeoGeneralRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        titulo:
+            type: string
+            column: Titulo
+        imagen:
+            type: string
+            column: Imagen
+    manyToOne:
+        menuRelacion:
+            targetEntity: ChhMenu
+            joinColumn:
+              name: menuRelacion_id
+              referencedColumnName: id
+    lifecycleCallbacks: {  }

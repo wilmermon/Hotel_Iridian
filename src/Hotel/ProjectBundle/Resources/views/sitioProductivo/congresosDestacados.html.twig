@@ -1,0 +1,22 @@
+{% for homes in home %}
+<div class="col-md-4">
+    <section class="selectHome">
+        <article>
+           <div>
+                <h2>
+                    {{ homes.NombreCongreso }}
+                    <span>({{ homes.UbicacionCongreso }}) | destacado</span>
+                </h2>
+                <p>
+                    {{ homes.DescripcionCongreso[0:400] }} ...
+                </p>
+            </div>
+        </article>
+        <div>
+            <div class="fechasHome">
+                <a href="congreso?page={{ homes.page }}" class="btn">VER MÁS</a>
+            </div>
+        </div>
+    </section>
+</div>
+{% endfor %}

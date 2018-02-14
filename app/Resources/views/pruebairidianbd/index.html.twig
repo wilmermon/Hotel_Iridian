@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pruebairidianbds list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Documento</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pruebaIridianBD in pruebaIridianBDs %}
+            <tr>
+                <td><a href="{{ path('pruebairidianbd_show', { 'id': pruebaIridianBD.id }) }}">{{ pruebaIridianBD.id }}</a></td>
+                <td>{{ pruebaIridianBD.name }}</td>
+                <td>{{ pruebaIridianBD.documento }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('pruebairidianbd_show', { 'id': pruebaIridianBD.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('pruebairidianbd_edit', { 'id': pruebaIridianBD.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pruebairidianbd_new') }}">Create a new pruebaIridianBD</a>
+        </li>
+    </ul>
+{% endblock %}

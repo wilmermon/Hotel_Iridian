@@ -1,0 +1,52 @@
+Hotel\ProjectBundle\Entity\ChhCongreso:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhCongresoRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombreCongreso:
+            type: string
+            column: NombreCongreso
+        ubicacionCongreso:
+            type: text
+            column: UbicacionCongreso
+        descripcionCongreso:
+            type: text
+            column: DescripcionCongreso
+        fechaCongreso:
+            type: datetime
+            column: FechaCongreso
+        lugarEncuentroCongreso:
+            type: string
+            column: LugarEncuentroCongreso
+        destacado:
+            type: boolean
+            column: Destacado
+        mapaCongreso:
+            type: string
+            column: MapaCongreso
+        mapAeropuerto:
+            type: string
+            column: MapAeropuerto
+    manyToOne:
+        paiscongresoRelacion:
+            targetEntity: ChhPaisCongreso
+            joinColumn:
+              name: paiscongresoRelacion_id
+              referencedColumnName: id
+        tipocongresoRelacion:
+            targetEntity: ChhTipoCongreso
+            joinColumn:
+              name: tipocongresoRelacion_id
+              referencedColumnName: id
+        idiomaRelacion:
+            targetEntity: ChhIdiomas
+            joinColumn:
+              name: idiomaRelacion_id
+              referencedColumnName: id
+    lifecycleCallbacks: {  }

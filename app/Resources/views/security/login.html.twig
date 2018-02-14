@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<form class="form-signin" action="/web/login" method="POST">
+    <h2 class="form-signin-heading">Por favor ingrese los datos</h2>
+    
+    <label for="_username" class="sr-only">Usuario</label>
+    <input type="text"
+            id="_username"
+            name="_username"
+            class="form-control"
+            placeholder="Usuario"
+            required
+            autofocus>
+    
+    <label for="_username" class="sr-only">Clave</label>
+    <input type="password"
+            id="_password"
+            name="_password"
+            class="form-control"
+            placeholder="Clave"
+            required
+            autofocus>
+            
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Verificar credenciales</button>
+    
+</form>
+
+{% endblock %}

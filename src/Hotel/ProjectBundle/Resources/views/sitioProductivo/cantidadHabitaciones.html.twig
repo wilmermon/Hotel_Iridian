@@ -1,0 +1,8 @@
+{% set conteo = 0 %}
+
+{% for homes in home %} 
+    {% set conteo = conteo + homes.NumeroCamasTotales %} rooms
+{% endfor %}
+<p>
+    {{ conteo }}
+</p>

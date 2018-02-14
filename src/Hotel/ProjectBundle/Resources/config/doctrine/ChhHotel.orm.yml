@@ -1,0 +1,39 @@
+Hotel\ProjectBundle\Entity\ChhHotel:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhHomeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombreHotel:
+            type: string
+            column: NombreHotel
+        descHotel:
+            type: string
+            column: DescHotel
+        numeroCamasLibres:
+            type: integer
+            column: NumeroCamasLibres
+        numeroCamasTotales:
+            type: integer
+            column: NumeroCamasTotales
+        mapa:
+            type: string
+            column: Mapa
+        calificacion:
+            type: integer
+            column: Calificacion
+        desde:
+            type: date
+            column: desde
+        hasta:
+            type: date
+            column: hasta
+        activo:
+            type: boolean
+            column: activo
+    lifecycleCallbacks: {  }

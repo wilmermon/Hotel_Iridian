@@ -1,0 +1,15 @@
+Hotel\ProjectBundle\Entity\ChhPaisCongreso:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhPaisCongresoRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombrePais:
+            type: string
+            column: NombrePais
+    lifecycleCallbacks: {  }

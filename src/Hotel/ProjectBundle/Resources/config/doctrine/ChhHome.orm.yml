@@ -1,0 +1,40 @@
+Hotel\ProjectBundle\Entity\ChhHome:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhHomeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        imgLogo:
+            type: string
+            column: imgLogo
+        nombreTituloTestimonio:
+            type: string
+            column: NombreTituloTestimonio
+        nombre2TituloTestimonio:
+            type: string
+        nombreBuscaCongreso:
+            type: string
+            column: NombreBuscaCongreso
+        nombre2BuscaCongreso:
+            type: string
+            column: Nombre2BuscaCongreso
+        activo:
+            type: boolean
+            column: activo
+    manyToOne:
+        congresoRelacion:
+            targetEntity: ChhCongreso
+            joinColumn:
+              name: congresoRelacion_id
+              referencedColumnName: id
+        idiomaRelacion:
+            targetEntity: ChhIdiomas
+            joinColumn:
+              name: idiomaRelacion_id
+              referencedColumnName: id
+    lifecycleCallbacks: {  }

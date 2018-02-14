@@ -1,0 +1,142 @@
+{% set nombreCongreso = '' %}
+{% set descCongreso = '' %}
+{% set ubicacionCongreso = '' %}
+{% set lugarCongreso = '' %}
+{% set fechaCongreso = '' %}
+{% set mes = '' %}
+{% set dia = '' %}
+{% set mesT = '' %}
+{% set anio = '' %}
+{% set titulo1Congresos = '' %}
+{% set titulo2Congresos = '' %}
+{% set titulo1Testimonio = '' %}
+{% set titulo2Testimonio = '' %}
+{% set idHomeGral = '' %}
+{% set imagenFondo = '' %}
+{% set page = '' %}
+
+{% for homes in home %}
+        {% set page = homes.page %}
+        {% set imagenFondo = homes.imgLogo %}
+        {% set nombreCongreso = homes.NombreCongreso %}
+        {% set descCongreso = homes.DescripcionCongreso %}
+        {% set ubicacionCongreso = homes.UbicacionCongreso %}
+        {% set lugarCongreso = homes.LugarEncuentroCongreso %}
+        {% set fechaCongreso = homes.FechaCongreso %}
+        {% set mes = fechaCongreso|slice(5,2) %}
+        {% set dia = fechaCongreso|slice(8,2) %}
+        {% set anio = fechaCongreso|slice(0,4) %}
+        {% if mes == 01 %}
+            {% set mesT = 'Enero' %}
+        {% elseif mes == 02 %}
+            {% set mesT = 'Febrero' %}
+        {% elseif mes == 03  %}
+            {% set mesT = 'Marzo' %}    
+        {% elseif mes == 04  %}
+            {% set mesT = 'Abril' %}    
+        {% elseif mes == 05  %}
+            {% set mesT = 'Mayo' %}    
+        {% elseif mes == 06  %}
+            {% set mesT = 'Junio' %}    
+        {% elseif mes == 07  %}
+            {% set mesT = 'Julio' %}    
+        {% elseif mes == 08  %}
+            {% set mesT = 'Agosto' %}    
+        {% elseif mes == 09  %}
+            {% set mesT = 'Septiembre' %}    
+        {% elseif mes == 10  %}
+            {% set mesT = 'Octubre' %}    
+        {% elseif mes == 11  %}
+            {% set mesT = 'Noviembre' %}    
+        {% elseif mes == 12  %}
+            {% set mesT = 'Diciembre' %}    
+        {% endif %}
+        {% set titulo1Congresos = homes.NombreBuscaCongreso %}
+        {% set titulo2Congresos = homes.Nombre2BuscaCongreso %}
+        {% set titulo1Testimonio = homes.NombreTituloTestimonio %}
+        {% set titulo2Testimonio = homes.nombre2titulo_testimonio %}
+        {% set idHomeGral = homes.id %}
+{% endfor %}
+
+{% extends 'base.html.twig' %}
+
+{% block SEOTOTAL %}
+    {{ render(controller('ProjectBundle:Default:seo', {'valorMenu':'1'}))}}
+{% endblock %}
+
+{% block header %}
+{{ render(controller('ProjectBundle:Default:hder', {'page':page}))}}
+{% endblock %}
+
+{% block body %}
+<main id="panel">
+        <div class="cont_movil">
+            <div class="izqui">
+                <a href="/" class="homeLink"><img src="{{ asset('images/5984a526b0231.png') }}"/></a>
+            </div>
+            <div class="dere">
+                <i class=" menu_h fa fa-align-right" aria-hidden="true"></i>
+            </div>
+        </div>
+        
+    <div class="banner" style="background-image: url('upload/hotel/{{ imagenFondo }}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6 col-sm-12 bannerContent">
+                                                    <!--<input type="search"/>-->
+                                                <div class="lineasBl">
+                            <span></span>
+                            <hr/>
+                        </div>
+                        <div class="txtBls">
+                            <h2>
+                                {{ nombreCongreso }}
+                                <span>{{ lugarCongreso|upper }}</span>
+                            </h2>
+                            <p>{{ descCongreso[0:400] }} ...</p>
+                            <div>
+                                <div class="fechasHome">
+                                    <h3>{{ mesT|upper }}</h3>
+                                    <span>
+                                    <hr/>
+                                    <span>{{ dia }} del {{ anio }}</span>
+                                    <hr/>
+                                </span>
+                                    <a href="javascript:void(0)" class="btn">VER MÁS
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ttlGris">
+        <h2>
+            {{ titulo1Congresos }}
+            <span>{{ titulo2Congresos }}</span>
+        </h2>
+        <hr/>
+    </div>
+    <div class="banner bannerCongHome" style="background-image: url('{{ asset('images/5983799fb3698.jpg') }}')">
+        <div class="container">
+            <div class="row">
+                {{ render(controller('ProjectBundle:Default:congresosdestacados', {'page':page})) }}
+            </div>
+        </div>
+    </div>
+    <div class="ttlGris">
+        <h2>
+            {{ titulo1Testimonio }}
+            <span>{{ titulo2Testimonio }}</span>
+        </h2>
+        <hr/>
+    </div>
+    {{ render(controller('ProjectBundle:Default:testimonios')) }}
+{% endblock %}
+
+{% block footer %}
+{{ render(controller('ProjectBundle:Default:fter', {'page':page,'valorMenu':'1'})) }}
+{% endblock %}

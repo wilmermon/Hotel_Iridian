@@ -1,0 +1,30 @@
+Hotel\ProjectBundle\Entity\ChhServicios:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhServiciosRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombreServicios:
+            type: string
+            column: NombreServicios
+        nombre2Servicios:
+            type: string
+            column: Nombre2Servicios
+        linkServicios:
+            type: string
+            column: LinkServicios
+        imgServicios:
+            type: string
+            column: ImgServicios
+    manyToOne:
+        idiomaRelacion:
+            targetEntity: ChhIdiomas
+            joinColumn:
+              name: idiomaRelacion_id
+              referencedColumnName: id
+    lifecycleCallbacks: {  }

@@ -1,0 +1,38 @@
+Hotel\ProjectBundle\Entity\ChhMenu:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhMenuRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombreMenu:
+            type: string
+            column: NombreMenu
+        linkMenu:
+            type: string
+            column: LinkMenu
+        orden:
+            type: integer
+            column: Orden
+        footer:
+            type: boolean
+            column: Footer
+        activo:
+            type: boolean
+            column: Activo
+    manyToOne:
+        homeRelacion:
+            targetEntity: ChhHome
+            joinColumn:
+              name: homeRelacion_id
+              referencedColumnName: id
+        idiomaRelacion:
+            targetEntity: ChhIdiomas
+            joinColumn:
+              name: idiomaRelacion_id
+              referencedColumnName: id
+    lifecycleCallbacks: {  }

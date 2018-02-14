@@ -1,0 +1,28 @@
+Hotel\ProjectBundle\Entity\ChhTestimonio:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhTestimonioRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        imgTestimonio:
+            type: string
+            column: ImgTestimonio
+        descTestimonio:
+            type: text
+            column: DescTestimonio
+        ratingTestimonio:
+            type: integer
+            nullable: true
+            column: RatingTestimonio
+    manyToOne:
+        homeRelacion:
+            targetEntity: ChhHome
+            joinColumn:
+              name: homeRelacion_id
+              referencedColumnName: id
+    lifecycleCallbacks: {  }

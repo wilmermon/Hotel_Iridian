@@ -1,0 +1,24 @@
+Hotel\ProjectBundle\Entity\ChhRedesSociales:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhRedesSocialesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        imgRedSocial:
+            type: string
+            length: 255
+            column: ImgRedSocial
+        nombreRedSocial:
+            type: string
+            length: 255
+            column: NombreRedSocial
+        linkRedSocial:
+            type: string
+            length: 255
+            column: LinkRedSocial
+    lifecycleCallbacks: {  }

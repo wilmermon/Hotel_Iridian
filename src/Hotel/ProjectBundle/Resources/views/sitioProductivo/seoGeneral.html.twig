@@ -1,0 +1,7 @@
+{% set idGeneral = 0 %}
+{% for seo in home %}
+    {% set idGeneral = seo.id %}
+    <title>{{ seo.Titulo }}</title>
+    <link rel="image_src" href="upload/hotel/{{ seo.Imagen }}"/>
+{% endfor %}
+{{ render(controller('ProjectBundle:Default:seo2', {'valorGeneral':idGeneral}))}}

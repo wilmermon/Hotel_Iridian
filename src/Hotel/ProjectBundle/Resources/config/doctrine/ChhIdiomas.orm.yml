@@ -1,0 +1,21 @@
+Hotel\ProjectBundle\Entity\ChhIdiomas:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhIdiomasRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nombreIdiomas:
+            type: string
+            column: NombreIdiomas
+        prefijoIdiomas:
+            type: string
+            column: PrefijoIdiomas
+        imgIdiomas:
+            type: string
+            column: ImgIdiomas
+    lifecycleCallbacks: {  }

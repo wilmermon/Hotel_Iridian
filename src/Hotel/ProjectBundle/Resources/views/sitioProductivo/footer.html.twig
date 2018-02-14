@@ -1,0 +1,35 @@
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            {% for foo2 in home %}    
+                <div class="logoFoot">
+                    <img src="{{ asset('images/5984a526b0231.png') }}"/>
+                </div>
+                <div class="datosFoot">
+                    {{ render(controller('ProjectBundle:Default:redessociales')) }}
+                    <h6>{{ foo2.NombreFooter }}</h6>
+                    <span>{{ foo2.ContactoFooter }}</span>
+                    <p>Todos los Derechos Reservados Corporate Housing Hotel 2017</p>
+                </div>
+                <div class="quickLinks">
+                    <ul>
+                        <!--<li><a href="/contacto">Contacto</a></li>
+                        <li><a href="/nosotros">Nosotros</a></li>-->
+                        {{ render(controller('ProjectBundle:Default:idioma', {'valorMenu':foo2.valorMenu})) }}
+                    </ul>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-12">
+            <hr/>
+            <a class="iridian" href="http://iridian.co/" target="_blank">
+                Powered By:
+                <img src="http://prueba12.iridian.co	/images/iridian-blanco.png"/>
+            </a>
+        </div>
+    </div>
+</div>
+</footer>
+</main>

@@ -1,0 +1,567 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+    app.path.product_images: /web/upload/hotel
+
+framework:
+    #esi: ~
+    translator: { fallbacks: ['%locale%'] }
+    secret: '%secret%'
+    router:
+        resource: '%kernel.project_dir%/app/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation: { enable_annotations: true }
+    #serializer: { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    session:
+        # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id: session.handler.native_file
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+    fragments: ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+# Twig Configuration
+twig:
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver: pdo_mysql
+        host: '%database_host%'
+        port: '%database_port%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
+        charset: UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path: '%database_path%'
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: '%mailer_transport%'
+    encryption: 'ssl'
+    auth_mode:  'login'
+    host:      '%mailer_host%'
+    username:  '%mailer_user%'
+    password:  '%mailer_password%'
+    #realtime: { type: memory }
+
+easy_admin:
+    design:
+        brand_color: '#4C0B5F'
+        color_scheme: 'light'
+        menu: 
+            - { label: 'CORPORATE HOUSING HOTEL'}
+            - label: 'Configuracion'
+              icon: 'cogs'
+              children: ['ChhMenu','ChhFooter','ChhTipoCongreso','ChhPaisCongreso','ChhRedesSociales', 'ChhIdiomas', 'ChhSeoGeneral', 'ChhSeoEspecifico', 'ChhCorreoContacto']
+
+            - label: 'Web'
+              icon: 'briefcase'
+              children:
+                - { label: 'Aliados', icon: 'cogs', entity: 'ChhAliados' }
+                - { label: 'Hoteles', icon: 'cogs', entity: 'ChhHotel' }
+                - { label: 'Congresos', icon: 'bank', entity: 'ChhCongreso' }
+                - { label: 'Relación Congreso Vs Hotel', icon: 'code', entity: 'ChhCongresovshotel' }
+                - { label: 'Página Inicial', icon: 'home', entity: 'ChhHome' }
+                - { label: 'Nosotros', icon: 'users', entity: 'ChhNosotrosRotador' }
+                - { label: 'Nuestros servicios', icon: 'trophy', entity: 'ChhServicios' }
+                - { label: 'Testimonios', icon: 'send', entity: 'ChhTestimonio' }
+            - label: 'Contacto con nosotros'
+              icon: 'key'
+              children:
+                - { label: 'Reservas recibidas', icon: 'shopping-basket', entity: 'ChhReserva' }
+                - { label: 'Contacto', icon: 'folder-o', entity: 'ChhContacto' }
+    entities:
+         
+         ChhHome:
+            class: Hotel\ProjectBundle\Entity\ChhHome
+            form:
+                fields:
+                    - { property: 'imageFile', type: 'Vich\UploaderBundle\Form\Type\VichImageType', label: 'Imagen fondo', base_path: '%app.path.product_images%' }
+                    - nombreTituloTestimonio
+                    - nombre2titulo_testimonio
+                    - nombreBuscaCongreso
+                    - nombre2BuscaCongreso
+                    - congresoRelacion
+                    - idiomaRelacion
+                    - activo
+            label: 'Página principal'
+            new:
+                title: "Nuevo %%entity_label%%"
+            list:
+                title: "Lista de %%entity_label%%"
+                fields:
+                    - { property: 'imgLogo', type: 'image', base_path: '%app.path.product_images%', label: 'Imagen fondo' }
+                    - { 
+                        property: 'activo',
+                        label: 'Activo',
+                      }
+                    - nombreTituloTestimonio
+                    - nombre2titulo_testimonio
+                    - nombreBuscaCongreso
+                    - nombre2BuscaCongreso
+                    - congresoRelacion
+                    - idiomaRelacion
+                actions:
+                     - { name: 'delete', label: 'Borrar', icon: 'close' }
+                     - { name: 'edit', label: 'Editar', icon: 'history' }
+                     - { name: 'new', label: 'Crear nuevo', icon: 'folder' }
+                     - { name: 'search', label: 'Buscar', icon: 'folder' }
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+                
+         ChhCongreso:
+            class: Hotel\ProjectBundle\Entity\ChhCongreso
+            label: 'Congreso'
+            fields:
+                - nombreCongreso
+                - UbicacionCongreso
+                - descripcionCongreso
+                - fechaCongreso
+                - lugarEncuentroCongreso
+                - destacado
+                - mapaCongreso
+                - paiscongresoRelacion
+                - tipocongresoRelacion
+                - idiomaRelacion
+            new:
+                title: "Nuevo %%entity_label%%"
+            list:
+                title: "Lista de %%entity_label%%"
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+                
+         ChhCongresovshotel:
+            class: Hotel\ProjectBundle\Entity\ChhCongresovshotel
+            label: 'Congreso Vs Hotel'
+            new:
+                title: "Nuevo %%entity_label%%"
+            list:
+                title: "Lista de %%entity_label%%"
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+                
+         ChhAliados:
+            class: Hotel\ProjectBundle\Entity\ChhAliados
+            form:
+                fields:
+                    - { property: 'imageFile1', type: 'Vich\UploaderBundle\Form\Type\VichImageType', label: 'Imagen', base_path: '%app.path.product_images%' }
+                    - NombreAliados
+                    - LinkAliados
+            label: 'Aliados'
+            new:
+                title: "Nuevo %%entity_label%%"
+            list:
+                title: "Lista de %%entity_label%%"
+                fields:
+                    - { property: 'ImgAliados', type: 'image', base_path: '%app.path.product_images%', label: 'Imagen aliado' }
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+                
+                
+         ChhFooter:
+            class: Hotel\ProjectBundle\Entity\ChhFooter
+            label: 'Footer'
+            new:
+                title: "Nuevo %%entity_label%%"
+            list:
+                title: "Lista de %%entity_label%%"
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+                
+         ChhMenu:
+            class: Hotel\ProjectBundle\Entity\ChhMenu
+            label: 'Menu'
+            new:
+                title: "Nuevo %%entity_label%%"
+            list:
+                #dql_filter: "entity.orden > 2"
+                title: "Lista de %%entity_label%%"
+                fields:
+                    - nombreMenu
+                    - linkMenu
+                    - orden
+                    - footer
+                    - activo
+                    - homeRelacion
+                    - idiomaRelacion
+                actions:
+                     - { name: 'delete', label: 'Borrar', icon: 'close' }
+                     - { name: 'edit', label: 'Editar', icon: 'history' }
+                     - { name: 'new', label: 'Crear nuevo', icon: 'folder' }
+                     - { name: 'search', label: 'Buscar', icon: 'folder' }
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+                actions:
+                     - { name: 'delete', label: 'Borrar', icon: 'close' }
+                
+         ChhNosotrosRotador:
+            class: Hotel\ProjectBundle\Entity\ChhNosotrosRotador
+            form:
+                fields:
+                    - { property: 'imageFile4', type: 'Vich\UploaderBundle\Form\Type\VichImageType', label: 'Imagen fondo', base_path: '%app.path.product_images%' }
+                    - { property: 'LinkUnoNosotros', label: 'Texto 1' }
+                    - { property: 'imageFile1', type: 'Vich\UploaderBundle\Form\Type\VichImageType', label: 'Imagen Boton 1', base_path: '%app.path.product_images%' }
+                    - { property: 'LinkDosNosotros', label: 'Texto 2' }
+                    - { property: 'imageFile2', type: 'Vich\UploaderBundle\Form\Type\VichImageType', label: 'Imagen Boton 2', base_path: '%app.path.product_images%' }
+                    - { property: 'LinkTresNosotros', label: 'Texto 3' }
+                    - { property: 'imageFile3', type: 'Vich\UploaderBundle\Form\Type\VichImageType', label: 'Imagen Boton 3', base_path: '%app.path.product_images%' }
+                    - TituloNosotros
+                    - DescNosotros
+                    - Activo
+                    - idiomaRelacion
+                    - orden
+            label: 'Nosotros'
+            new:
+                title: "Nuevo %%entity_label%%"
+            list:
+                title: "Lista de %%entity_label%%"
+                fields:
+                    - { 
+                        property: 'activo',
+                        label: 'Activo',
+                      }
+                    - { property: 'imgFondoNosotros', type: 'image', base_path: '%app.path.product_images%', label: 'Imagen fondo' }
+                    - { property: 'btnUnoNosotros', type: 'image', base_path: '%app.path.product_images%', label: 'Boton 1' }
+                    - { property: 'btnDosNosotros', type: 'image', base_path: '%app.path.product_images%', label: 'Boton 2' }
+                    - { property: 'btnTresNosotros', type: 'image', base_path: '%app.path.product_images%', label: 'Boton 3' }
+                    
+                    - TituloNosotros
+                    - orden
+                    - idiomaRelacion
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+                
+         ChhPaisCongreso:
+            class: Hotel\ProjectBundle\Entity\ChhPaisCongreso
+            label: 'Paises'
+            new:
+                title: "Nuevo %%entity_label%%"
+            list:
+                title: "Lista de %%entity_label%%"
+                fields:
+                    - { property: 'NombrePais', label: 'Paises Habilitados' }
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+        
+         ChhIdiomas:
+            class: Hotel\ProjectBundle\Entity\ChhIdiomas
+            form:
+                fields:
+                    - NombreIdiomas
+                    - PrefijoIdiomas
+                    - { property: 'imageFile1', type: 'Vich\UploaderBundle\Form\Type\VichImageType', label: 'Imagen Idiomas', base_path: '%app.path.product_images%' }
+            label: 'Idiomas'
+            new:
+                title: "Nuevo %%entity_label%%"
+            list:
+                title: "Lista de %%entity_label%%"
+                fields:
+                    - NombreIdiomas
+                    - PrefijoIdiomas
+                    - { property: 'imgIdiomas', type: 'image', base_path: '%app.path.product_images%', label: 'Imagen fondo' }
+                actions:
+                    - { name: '-edit', label: 'Editar', icon: 'history' }
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+                
+         ChhSeoGeneral:
+            class: Hotel\ProjectBundle\Entity\ChhSeoGeneral
+            form:
+                fields:
+                    - titulo
+                    - { property: 'imageFile1', type: 'Vich\UploaderBundle\Form\Type\VichImageType', label: 'Imagen SEO', base_path: '%app.path.product_images%' }
+                    - menuRelacion
+            label: 'SEO General'
+            new:
+                title: "Nuevo %%entity_label%%"
+            list:
+                title: "Lista de %%entity_label%%"
+                fields:
+                    - titulo
+                    - { property: 'imagen', type: 'image', base_path: '%app.path.product_images%', label: 'Imagen SEO' }
+                    - menuRelacion
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+                
+         ChhSeoEspecifico:
+            class: Hotel\ProjectBundle\Entity\ChhSeoEspecifico
+            form:
+                fields:
+                    - valor1
+                    - valor2
+                    - { property: 'tipoMeta', type:'choice', type_options: {choices: {'Tag Name':'1', 'Tag Property':'2'}}}
+                    - seoRelacion
+            label: 'SEO Especifico'
+            new:
+                title: "Nuevo %%entity_label%%"
+            list:
+                title: "Lista de %%entity_label%%"
+                fields:
+                    - valor1
+                    - valor2
+                    - TipoMeta
+                    - seoRelacion
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+                
+         ChhReserva:
+            class: Hotel\ProjectBundle\Entity\ChhReserva
+            label: 'Reserva'
+            new:
+                title: "Nuevo %%entity_label%%"
+            list:
+                title: "Lista de %%entity_label%%"
+                fields:
+                    - NombreReserva
+                    - CorreoReserva
+                    - EmpresaReserva
+                    - NumeroCuartosReserva
+                    - MensajeReserva
+                actions:
+                     - { name: 'delete', label: 'Borrar', icon: 'close' }
+                     - { name: '-edit'}
+                     - { name: '-new' }
+                     - { name: 'search', label: 'Buscar', icon: 'folder' }
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+                
+         ChhServicios:
+            class: Hotel\ProjectBundle\Entity\ChhServicios
+            form:
+                fields:
+                    - { property: 'imageFile', type: 'Vich\UploaderBundle\Form\Type\VichImageType', label: 'Imagen base', base_path: '%app.path.product_images%' }
+                    - { property: 'linkServicios', label: 'Link del servicio'  }
+                    - { property: 'NombreServicios', label: 'Nombre general uno'  }
+                    - { property: 'Nombre2Servicios', label: 'Sub titulo del servicio'  }
+                    - idiomaRelacion
+            label: 'Servicios'
+            new:
+                title: "Nuevo %%entity_label%%"
+            list:
+                title: "Lista de %%entity_label%%"
+                fields:
+                    - { property: 'imgServicios', type: 'image', base_path: '%app.path.product_images%', label: 'Imagen servicio' }
+                    - NombreServicios
+                    - Nombre2Servicios
+                    - LinkServicios
+                    - idiomaRelacion
+                actions:
+                     - { name: 'delete', label: 'Borrar', icon: 'close' }
+                     - { name: 'edit', label: 'Editar', icon: 'history' }
+                     - { name: 'new', label: 'Crear nuevo', icon: 'folder' }
+                     - { name: 'search', label: 'Buscar', icon: 'folder' }
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+                
+         ChhTestimonio:
+            class: Hotel\ProjectBundle\Entity\ChhTestimonio
+            form:
+                fields:
+                    - { property: 'imageFile', type: 'Vich\UploaderBundle\Form\Type\VichImageType', label: 'Imagen testimonio', base_path: '%app.path.product_images%' }
+                    - descTestimonio
+                    - ratingTestimonio
+                    - homeRelacion
+            label: 'Testimonios'
+            new:
+                title: "Nuevo %%entity_label%%"
+            list:
+                title: "Lista de %%entity_label%%"
+                actions:
+                     - { name: 'delete', label: 'Borrar', icon: 'close' }
+                     - { name: 'edit', label: 'Editar', icon: 'history' }
+                     - { name: 'new', label: 'Crear nuevo', icon: 'folder' }
+                     - { name: 'search', label: 'Buscar', icon: 'folder' }
+                fields:
+                    - { property: 'ImgTestimonio', type: 'image', base_path: '%app.path.product_images%', label: 'Imagen testimonio' }
+                    - descTestimonio
+                    - ratingTestimonio
+                    - homeRelacion
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+                
+         ChhTipoCongreso:
+            class: Hotel\ProjectBundle\Entity\ChhTipoCongreso
+            label: 'Tipo de congreso'
+            
+            new:
+                title: "Nuevo %%entity_label%%"
+                help: 'Usted debe ingresar el tipo de congreso que puede existir en el sistema.'
+                actions:
+                    - { name: 'list', label: 'Lista general' }
+            list:
+                title: "Lista de %%entity_label%%"
+                fields:
+                    - NombreTipoCongreso
+                    - idiomaRelacion
+                actions:
+                     - { name: 'delete', label: 'Borrar', icon: 'close' }
+                     - { name: 'edit', label: 'Editar', icon: 'history' }
+                     - { name: 'new', label: 'Crear nuevo', icon: 'folder' }
+                     - { name: 'search', label: 'Buscar', icon: 'folder' }
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+            delete_modal:
+                title: "Esta a punto de eliminar %%entity_label%% "
+                
+         ChhRedesSociales:
+            class: Hotel\ProjectBundle\Entity\ChhRedesSociales
+            form:
+                fields:
+                    - imgRedSocial
+                    - NombreRedSocial
+                    - LinkRedSocial
+            label: 'Redes Sociales'
+            
+            new:
+                title: "Nuevo %%entity_label%%"
+                help: "Por favor ingrese las redes sociales que se mostraran en el sitio."
+                actions:
+                    - { name: 'list', label: 'Lista general' }
+            list:
+                title: "Lista de %%entity_label%%"
+                fields:
+                    - imgRedSocial
+                    - NombreRedSocial
+                    - LinkRedSocial
+                actions:
+                     - { name: 'delete', label: 'Borrar', icon: 'close' }
+                     - { name: 'edit', label: 'Editar', icon: 'history' }
+                     - { name: 'new', label: 'Crear nuevo', icon: 'folder' }
+                     - { name: 'search', label: 'Buscar', icon: 'folder' }
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+            delete_modal:
+                title: "Esta a punto de eliminar %%entity_label%% "
+         
+         ChhHotel:
+            class: Hotel\ProjectBundle\Entity\ChhHotel
+            label: 'Hotel'
+            
+            new:
+                title: "Nuevo %%entity_label%%"
+                help: "Por favor ingrese el hotel que se dispondran para los congresos."
+                actions:
+                    - { name: 'list', label: 'Lista general' }
+            list:
+                title: "Lista de %%entity_label%%"
+                fields:
+                    - nombreHotel
+                    - descHotel
+                    - calificacion
+                    - activo
+                    - Mapa
+                actions:
+                     - { name: 'delete', label: 'Borrar', icon: 'close' }
+                     - { name: 'edit', label: 'Editar', icon: 'history' }
+                     - { name: 'new', label: 'Crear nuevo', icon: 'folder' }
+                     - { name: 'search', label: 'Buscar', icon: 'folder' }
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+            delete_modal:
+                title: "Esta a punto de eliminar %%entity_label%% "
+                
+         ChhContacto:
+            class: Hotel\ProjectBundle\Entity\ChhContacto
+            label: 'Contacto'
+            new:
+                title: "Nuevo %%entity_label%%"
+            list:
+                title: "Lista de %%entity_label%%"
+                fields:
+                    - NombreContacto
+                    - ApellidoContacto
+                    - CorreoContacto
+                    - AsuntoContacto
+                    - MensajeContacto
+                actions:
+                     - { name: 'delete', label: 'Borrar', icon: 'close' }
+                     - { name: '-edit', label: 'Editar', icon: 'history' }
+                     - { name: '-new', label: 'Crear nuevo', icon: 'folder' }
+                     - { name: 'search', label: 'Buscar', icon: 'folder' }
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+                
+         ChhCorreoContacto:
+            class: Hotel\ProjectBundle\Entity\ChhCorreoContacto
+            label: 'Correo de contacto interno'
+            
+            new:
+                title: "Nuevo %%entity_label%%"
+                help: 'Usted debe ingresar el nuevo registro de correo interno, al cuál quiere que le lleguen las notificaciones'
+                actions:
+                    - { name: 'list', label: 'Lista general' }
+            list:
+                title: "Lista de %%entity_label%%"
+                help: 'Bienvenido! Estos correos son de manejo interno, y hacen parte del listado de distribución que se utiliza para notificar de contactos y/o reservas.'
+                actions:
+                     - { name: 'delete', label: 'Borrar', icon: 'close' }
+                     - { name: 'edit', label: 'Editar', icon: 'history' }
+                     - { name: 'new', label: 'Crear nuevo', icon: 'folder' }
+                     - { name: 'search', label: 'Buscar', icon: 'folder' }
+            edit:
+                title: "Cambiar datos de %%entity_label%%"
+            delete_modal:
+                title: "Esta a punto de eliminar %%entity_label%% "
+                
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        product_images:
+            uri_prefix:         '%app.path.product_images%'
+            upload_destination: '%kernel.root_dir%/../web/upload/hotel'
+            namer: vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+            
+            
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        app: 
+            types:
+                chh_congreso:
+                    mappings:
+                        NombreCongreso: ~
+                        UbicacionCongreso: ~
+                        FechaCongreso: ~
+                        paiscongresoRelacion: ~
+                        tipocongresoRelacion: ~
+                    persistence:
+                        # the driver can be orm, mongodb, phpcr or propel
+                        # listener and finder are not supported by
+                        # propel and should be removed
+                        driver: orm
+                        model: Hotel\ProjectBundle\Entity\ChhCongreso
+                        provider: ~
+                        listener: ~
+                        finder: ~

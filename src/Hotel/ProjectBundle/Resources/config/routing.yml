@@ -1,0 +1,41 @@
+project_pruebairidianbd:
+    resource: "@ProjectBundle/Resources/config/routing/pruebairidianbd.yml"
+    prefix:   /pruebairidianbd
+
+project_homepage:
+    path:     /
+    defaults: { _controller: ProjectBundle:Default:index }
+    
+project_nosotros:
+    path:     /nosotros
+    defaults: { _controller: ProjectBundle:Default:nosotros }
+    
+project_servicios:
+    path:     /servicios
+    defaults: { _controller: ProjectBundle:Default:servicios }
+    
+project_contacto:
+    path:     /contacto
+    defaults: { _controller: ProjectBundle:Default:contacto }
+    
+project_congreso:
+    path:     /congreso
+    defaults: { _controller: ProjectBundle:Default:congreso }
+    
+login:
+    path:     /login
+    defaults: { _controller: ProjectBundle:Security:login }
+    
+logout:
+    path:     /logout
+    defaults: { _controller: ProjectBundle:Security:logout }
+    
+project_create:
+    path:     /createReserva
+    defaults: { _controller: ProjectBundle:Default:createReserva }
+    methods: POST
+    
+project_create_contacto:
+    path:     /createContacto
+    defaults: { _controller: ProjectBundle:Default:createContacto }
+    methods: POST

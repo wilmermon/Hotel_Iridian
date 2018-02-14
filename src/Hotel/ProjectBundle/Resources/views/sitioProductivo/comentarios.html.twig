@@ -1,0 +1,21 @@
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 testimonios">
+                {% for homes in home %}
+                <section>
+                    <div class="testImg">
+                        <img src="upload/hotel/{{ homes.ImgTestimonio }}"/>
+                    </div>
+                    <div class="testi">
+                        <p>
+                         {{ homes.DescTestimonio }}
+                        </p>
+                    </div>
+                    <div class="testRating">
+                        <div class="stars_rating"></div>
+                    </div>
+                </section>
+                {% endfor %}
+            </div>
+        </div>
+    </div>

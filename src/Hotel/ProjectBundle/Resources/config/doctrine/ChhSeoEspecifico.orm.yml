@@ -1,0 +1,27 @@
+Hotel\ProjectBundle\Entity\ChhSeoEspecifico:
+    type: entity
+    table: null
+    repositoryClass: Hotel\ProjectBundle\Repository\ChhSeoEspecificoRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        valor1:
+            type: string
+            column: Valor1
+        valor2:
+            type: string
+            column: Valor2
+        tipoMeta:
+            type: string
+            column: TipoMeta
+    manyToOne:
+        seoRelacion:
+            targetEntity: ChhSeoGeneral
+            joinColumn:
+              name: seoRelacion_id
+              referencedColumnName: id
+    lifecycleCallbacks: {  }

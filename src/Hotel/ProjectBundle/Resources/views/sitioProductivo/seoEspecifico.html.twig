@@ -1,0 +1,8 @@
+{% set bandera = 0 %}
+{% for seo in home %}
+    {% if seo.TipoMeta == 1 %}
+        <meta name="{{ seo.Valor1 }}" content="{{ seo.Valor2 }}" />
+    {% else %}
+        <meta property="{{ seo.Valor1 }}" content="{{ seo.Valor2 }}" />
+    {% endif %}
+{% endfor %}
